@@ -10,7 +10,11 @@ export class UserController {
   @Post("/create")
   async create(@Body() createUserDto: CreateUserDto) {
     const {name, email} = createUserDto
-    await this.userService.create(createUserDto);
+    try{
+      await this.userService.create(createUserDto);
+    } catch (e) {
+      console.log("Caindo no catch")
+    }
   }
 
   @Get()
